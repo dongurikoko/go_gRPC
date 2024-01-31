@@ -1,0 +1,58 @@
+// protoのバージョンの宣言
+syntax = "proto3";
+
+// protoファイルから自動生成させるGoのコードの置き先
+option go_package = "pkg/grpc";
+
+import "google/protobuf/timestamp.proto";
+
+// packageの宣言
+package todo;
+
+message Todo {
+    int64 id = 1; // 一意のID
+    string title = 2; // タイトル
+    google.protobuf.Timestamp createdAt = 3; // 登録日時
+    google.protobuf.Timestamp updatedAt = 4; // 更新日時
+}
+
+message CreateTodoRequest {
+    string title = 1; // 作成するTodoのタイトル
+}
+
+message CreateTodoResponse {
+    int64 id = 1; // 作成されたTodoのID
+}
+
+message GetTodosRequest {
+    string query = 1; // 検索クエリ（オプショナル）
+}
+
+message GetTodosResponse {
+    repeated Todo todos = 1; // Todoの一覧
+}
+
+message UpdateTodoRequest {
+    int64 id = 1; // 更新するTodoのID
+    string title = 2; // 新しいタイトル
+}
+
+message UpdateTodoResponse {
+    int64 id = 1; // 更新されたTodoのID
+}
+
+message DeleteTodoRequest {
+    int64 id = 1; // 削除するTodoのID
+}
+
+message DeleteTodoResponse {
+    // 特に返すものはないが、操作が成功したことを示す場合に使用することができる
+}
+
+// サービス定義
+service TodoService {
+    rpc Create(CreateTodoRequest) returns (CreateTodoResponse);
+    rpc Get(GetTodosRequest) returns (GetTodosResponse);
+    rpc Update(UpdateTodoRequest) returns (UpdateTodoResponse);
+    rpc Delete(DeleteTodoRequest) returns (DeleteTodoResponse);
+}
