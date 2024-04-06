@@ -1,5 +1,5 @@
 gRPCという存在を知り、勉強してみたかったため、go_lesson1と同様のAPIをgRPCで実装した。
-internalはlesson1と同様の構成になっているが、handler層の内容がgRPC仕様になっている。
+internalは[lesson1のレポジトリ](https://github.com/dongurikoko/go_lesson1)と同様の構成になっているが、handler層の内容がgRPC仕様になっている。
 
 ### gRPCとは?
 * https://www.xlsoft.com/jp/blog/blog/2022/05/25/post-29393-post-29393/
